@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Identity.Web.Resource;
 
 namespace OutdatedDev.Controllers
@@ -16,6 +17,7 @@ namespace OutdatedDev.Controllers
         ];
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [EnableRateLimiting("StrictPolicy")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
