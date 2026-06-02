@@ -21,6 +21,11 @@ namespace OutdatedDev
             builder.Services.AddEndpointsApiExplorer(); // Helps Swagger discover your endpoints
             builder.Services.AddSwaggerGen();           // The actual Swagger generator service
 
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.AddServerHeader = false; // Remove the "Server" header for security hardening
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
